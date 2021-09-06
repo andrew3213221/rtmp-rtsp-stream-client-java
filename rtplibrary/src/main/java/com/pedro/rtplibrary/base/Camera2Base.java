@@ -117,6 +117,16 @@ public abstract class Camera2Base implements GetAacData, GetVideoData, GetMicrop
     init(context);
   }
 
+  public Camera2Base(Context context, boolean useOpengl) {
+    this.context = context;
+    if (useOpengl) {
+      glInterface = new OffScreenGlThread(context);
+      glInterface.init();
+    }
+    isBackground = true;
+    init(context);
+  }
+
   public Camera2Base(Context context, boolean useOpengl, SurfaceTexture surfaceTexture) {
     this.context = context;
     this.surfaceTexture = surfaceTexture;

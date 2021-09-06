@@ -63,6 +63,11 @@ public class RtmpCamera2 extends Camera2Base {
     rtmpClient = new RtmpClient(connectChecker);
   }
 
+  public RtmpCamera2(Context context, boolean useOpengl, ConnectCheckerRtmp connectChecker) {
+    super(context, useOpengl);
+    rtmpClient = new RtmpClient(connectChecker);
+  }
+
   public RtmpCamera2(Context context, boolean useOpengl, ConnectCheckerRtmp connectChecker, SurfaceTexture surfaceTexture) {
     super(context, useOpengl, surfaceTexture);
     rtmpClient = new RtmpClient(connectChecker);
