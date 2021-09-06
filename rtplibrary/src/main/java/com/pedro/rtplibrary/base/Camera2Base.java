@@ -1,6 +1,7 @@
 package com.pedro.rtplibrary.base;
 
 import android.content.Context;
+import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraCharacteristics;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
@@ -70,6 +71,7 @@ public abstract class Camera2Base implements GetAacData, GetVideoData, GetMicrop
   private SurfaceView surfaceView;
   private TextureView textureView;
   private GlInterface glInterface;
+  private SurfaceTexture surfaceTexture;
   private boolean audioInitialized = false;
   private boolean onPreview = false;
   private boolean isBackground = false;
@@ -115,8 +117,9 @@ public abstract class Camera2Base implements GetAacData, GetVideoData, GetMicrop
     init(context);
   }
 
-  public Camera2Base(Context context, boolean useOpengl) {
+  public Camera2Base(Context context, boolean useOpengl, SurfaceTexture surfaceTexture) {
     this.context = context;
+    this.surfaceTexture = surfaceTexture;
     if (useOpengl) {
       glInterface = new OffScreenGlThread(context);
       glInterface.init();
@@ -126,7 +129,7 @@ public abstract class Camera2Base implements GetAacData, GetVideoData, GetMicrop
   }
 
   private void init(Context context) {
-    cameraManager = new Camera2ApiManager(context);
+    cameraManager = new Camera2ApiManager(context, this.surfaceTexture);
     videoEncoder = new VideoEncoder(this);
     setMicrophoneMode(MicrophoneMode.ASYNC);
     recordController = new RecordController();

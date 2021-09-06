@@ -59,6 +59,7 @@ public class Camera2ApiManager extends CameraDevice.StateCallback {
   private CameraDevice cameraDevice;
   private SurfaceView surfaceView;
   private TextureView textureView;
+  private SurfaceTexture surfaceTexture;
   private Surface surfaceEncoder; //input surfaceEncoder from videoEncoder
   private CameraManager cameraManager;
   private Handler cameraHandler;
@@ -88,7 +89,8 @@ public class Camera2ApiManager extends CameraDevice.StateCallback {
   private boolean faceDetectionEnabled = false;
   private int faceDetectionMode;
 
-  public Camera2ApiManager(Context context) {
+  public Camera2ApiManager(Context context, SurfaceTexture surfaceTexture) {
+    this.surfaceTexture = surfaceTexture;
     cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
   }
 
