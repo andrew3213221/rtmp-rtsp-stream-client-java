@@ -1,6 +1,7 @@
 package com.pedro.rtplibrary.rtmp;
 
 import android.content.Context;
+import android.graphics.SurfaceTexture;
 import android.media.MediaCodec;
 import android.os.Build;
 
@@ -62,8 +63,8 @@ public class RtmpCamera2 extends Camera2Base {
     rtmpClient = new RtmpClient(connectChecker);
   }
 
-  public RtmpCamera2(Context context, boolean useOpengl, ConnectCheckerRtmp connectChecker) {
-    super(context, useOpengl);
+  public RtmpCamera2(Context context, boolean useOpengl, ConnectCheckerRtmp connectChecker, SurfaceTexture surfaceTexture) {
+    super(context, useOpengl, surfaceTexture);
     rtmpClient = new RtmpClient(connectChecker);
   }
 
