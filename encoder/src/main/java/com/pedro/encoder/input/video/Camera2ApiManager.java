@@ -132,6 +132,7 @@ public class Camera2ApiManager extends CameraDevice.StateCallback {
       if (preview != null) listSurfaces.add(preview);
       if (surfaceEncoder != preview && surfaceEncoder != null) listSurfaces.add(surfaceEncoder);
 
+
       cameraDevice.createCaptureSession(listSurfaces, new CameraCaptureSession.StateCallback() {
         @Override
         public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
@@ -176,6 +177,8 @@ public class Camera2ApiManager extends CameraDevice.StateCallback {
     } else if (textureView != null) {
       final SurfaceTexture texture = textureView.getSurfaceTexture();
       surface = new Surface(texture);
+    } else if (surfaceTexture != null) {
+      surface = new Surface(surfaceTexture);
     }
     return surface;
   }
